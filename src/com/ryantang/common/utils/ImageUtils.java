@@ -3,6 +3,8 @@ package com.ryantang.common.utils;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -288,7 +290,11 @@ public class ImageUtils {
 		return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
 	}
 
-	public static void deleteAllPhoto(String path){
+	/**
+	 * Delete all picture files in sd card
+	 * @param path
+	 */
+	public static void deleteAllPictures(String path){
 		if (checkSDCardAvailable()) {
 			File folder = new File(path);
 			File[] files = folder.listFiles();
@@ -298,7 +304,12 @@ public class ImageUtils {
 		}
 	}
 	
-	public static void deletePhotoAtPathAndName(String path,String fileName){
+	/**
+	 * Delete picture
+	 * @param path
+	 * @param fileName
+	 */
+	public static void deletePicture(String path,String fileName){
 		if (checkSDCardAvailable()) {
 			File folder = new File(path);
 			File[] files = folder.listFiles();
@@ -309,5 +320,87 @@ public class ImageUtils {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Save image to the SD card 
+	 * @param photoBitmap
+	 * @param photoName
+	 * @param path
+	 */
+	public static int savePictureToSDCard(Bitmap photoBitmap,String path,String photoName){
+		if (checkSDCardAvailable()) {
+			File dir = new File(path);
+			if (!dir.exists()){
+				dir.mkdirs();
+			}
+			
+			File photoFile = new File(path , photoName);
+			
+			try {
+				FileOutputStream fileOutputStream = new FileOutputStream(photoFile);
+				
+				if (photoBitmap != null && photoBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)) {
+					fileOutputStream.flush();
+					fileOutputStream.close();
+					return Commons.SUCCESS;
+				}else {
+					return Commons.FAILED;
+				}
+			} catch (FileNotFoundException e) {
+				photoFile.delete();
+				e.printStackTrace();
+				return Commons.FAILED;
+			} catch (IOException e) {
+				photoFile.delete();
+				e.printStackTrace();
+				return Commons.FAILED;
+			}
+		} else {
+			return Commons.FAILED;
+		}
+	}
+	
+	/**
+	 * Get images from SD card by path and the name of image
+	 * @param photoName
+	 * @return
+	 */
+	public static Bitmap getPictureFromSDCard(String path,String photoName){
+		Bitmap photoBitmap = BitmapFactory.decodeFile(path + "/" +photoName);
+		if (photoBitmap == null) {
+			return null;
+		}else {
+			return photoBitmap;
+		}
+	}
+	
+	/**
+	 * Check if the picture exists in the SD card
+	 * @param path
+	 * @param photoName
+	 * @return
+	 */
+	public static boolean isPictureExistsInSDCard(String path,String photoName){
+		boolean flag = false;
+		if (checkSDCardAvailable()) {
+			File dir = new File(path);
+			if (dir.exists()) {
+				File folders = new File(path);
+				File photoFile[] = folders.listFiles();
+				for (int i = 0; i < photoFile.length; i++) {
+					String fileName = photoFile[i].getName().split("\\.")[0];
+					if (fileName.equals(photoName)) {
+						flag = true;
+						break;
+					}
+				}
+			}else {
+				flag = false;
+			}
+		}else {
+			flag = false;
+		}
+		return flag;
 	}
 }

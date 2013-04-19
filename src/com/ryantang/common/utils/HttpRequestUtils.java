@@ -49,7 +49,6 @@ public class HttpRequestUtils {
 				conn.setRequestMethod("POST");
 				conn.setConnectTimeout(CONNECT_TIMEOUT);
 				conn.setReadTimeout(READ_TIMEOUT);
-				// Allow do output if set request method post
 				conn.setDoOutput(true);
 				conn.setRequestProperty("Content-Type", "text/xml; charset=UTF-8");
 				conn.setRequestProperty("Content-Length", String.valueOf(data.length));
@@ -74,7 +73,7 @@ public class HttpRequestUtils {
 			} catch (RuntimeException e) {
 				requestCounts ++;
 				try {
-					Thread.sleep(100);
+					Thread.sleep(500);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}

@@ -3,6 +3,7 @@ package com.ryantang.common.utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -31,6 +32,21 @@ public class SystemUtils {
 		} else {
 			return true;
 		}
+	}
+	
+	/**
+	 * Judge if wifi or internect is connected
+	 * @param context
+	 * @return
+	 */
+	public boolean isWifiConnect(Context context){
+		ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Activity.CONNECTIVITY_SERVICE);
+		boolean wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
+		boolean internet = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
+		if (wifi | internet) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
