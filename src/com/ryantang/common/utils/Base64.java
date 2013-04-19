@@ -53,6 +53,9 @@ public class Base64 {
 		}
 	}
 
+	/**
+	  *
+	  */
 	public static byte[] decode(char[] data, int off, int len) {
 		char[] ibuf = new char[4];
 		int ibufcount = 0;
@@ -76,6 +79,9 @@ public class Base64 {
 		return ret;
 	}
 
+	/**
+	  *
+	  */
 	public static byte[] decode(String data) {
 		char[] ibuf = new char[4];
 		int ibufcount = 0;

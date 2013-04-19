@@ -158,7 +158,7 @@ public class ImageUtils {
 	/**
 	 * Bytes convert to Base64
 	 */
-	public static String bytesToBase64(byte[] bytes) {
+	public static String bytesTobase64(byte[] bytes) {
 		if (bytes != null && bytes.length > 0) {
 			String base64 = Base64.encode(bytes);
 			return base64;
