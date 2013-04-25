@@ -2,8 +2,11 @@ package com.ryantang.common.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -39,11 +42,10 @@ public class SystemUtils {
 	 * @param context
 	 * @return
 	 */
-	public boolean isWifiConnect(Context context){
+	public static boolean isWifiConnect(Context context){
 		ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Activity.CONNECTIVITY_SERVICE);
 		boolean wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
-		boolean internet = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
-		if (wifi | internet) {
+		if (wifi) {
 			return true;
 		}
 		return false;
@@ -62,5 +64,22 @@ public class SystemUtils {
 			imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,
 					InputMethodManager.HIDE_NOT_ALWAYS);
 		}
+	}
+	
+	/**
+	 * Check service state
+	 * @param context
+	 * @param className
+	 * @return
+	 */
+	public static boolean isServiceRunning(Context context,String className){
+	     ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+	     List<RunningServiceInfo> list = am.getRunningServices(30);
+	     for(RunningServiceInfo info : list){
+	         if(info.service.getClassName().equals(className)){
+	        	 return true;
+	         }
+	    }
+	    return false;
 	}
 }
