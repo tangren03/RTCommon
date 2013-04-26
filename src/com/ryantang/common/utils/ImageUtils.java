@@ -309,17 +309,21 @@ public class ImageUtils {
 	 * @param path
 	 * @param fileName
 	 */
-	public static void deletePicture(String path,String fileName){
+	public static boolean deletePicture(String path,String fileName){
 		if (checkSDCardAvailable()) {
-			File folder = new File(path);
-			File[] files = folder.listFiles();
-			for (int i = 0; i < files.length; i++) {
-				System.out.println(files[i].getName());
-				if (files[i].getName().equals(fileName)) {
-					files[i].delete();
+			if (isPictureExistsInSDCard(path, fileName)) {
+				File folder = new File(path);
+				File[] files = folder.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					System.out.println("deletePicture：" + files[i].getName());
+					if (files[i].getName().equals(fileName)) {
+						return files[i].delete();
+					}
 				}
 			}
+			
 		}
+		return false;
 	}
 	
 	/**
@@ -328,7 +332,8 @@ public class ImageUtils {
 	 * @param photoName
 	 * @param path
 	 */
-	public static int savePictureToSDCard(Bitmap photoBitmap,String path,String photoName){
+	public static boolean savePictureToSDCard(Bitmap photoBitmap,String path,String photoName){
+		boolean flag = false;
 		if (checkSDCardAvailable()) {
 			File dir = new File(path);
 			if (!dir.exists()){
@@ -340,25 +345,22 @@ public class ImageUtils {
 			try {
 				FileOutputStream fileOutputStream = new FileOutputStream(photoFile);
 				
-				if (photoBitmap != null && photoBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)) {
-					fileOutputStream.flush();
-					fileOutputStream.close();
-					return Commons.SUCCESS;
-				}else {
-					return Commons.FAILED;
+				if (photoBitmap != null ) {
+					if (photoBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)) {
+						fileOutputStream.flush();
+						fileOutputStream.close();
+						flag = true;
+					}
 				}
 			} catch (FileNotFoundException e) {
 				photoFile.delete();
 				e.printStackTrace();
-				return Commons.FAILED;
 			} catch (IOException e) {
 				photoFile.delete();
 				e.printStackTrace();
-				return Commons.FAILED;
 			}
-		} else {
-			return Commons.FAILED;
-		}
+		} 
+		return flag;
 	}
 	
 	/**
@@ -389,7 +391,8 @@ public class ImageUtils {
 				File folders = new File(path);
 				File photoFile[] = folders.listFiles();
 				for (int i = 0; i < photoFile.length; i++) {
-					String fileName = photoFile[i].getName().split("\\.")[0];
+					String fileName = photoFile[i].getName();
+					System.out.println("isPictureExistsInSDCard:"+fileName);
 					if (fileName.equals(photoName)) {
 						flag = true;
 						break;
