@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="green">#008B00</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFE31818</color>
+    <color name="transprent">#00000000</color>
+    <color name="orange">#FFFF7E00</color>
+    <color name="grey">#FF8B8B8B</color>
+    <color name="main_color">#097dad</color>
+    <color name="item_press">#5a9bd7</color>
+    <color name="bg_color">#EDEDED</color>
+    <color name="tab_bg">#4C4B4B</color>
+    <color name="title_bg">#CECECE</color>
+    
+    <color name="font_gray">#585858</color>
+    <color name="font_orange">#FF5A03</color>
+    <color name="font_blue">#007DA7</color>
+    <color name="font_green">#008400</color>
+    <color name="font_ligth_gray">#9F9F9F</color>
+
+    <!-- ZXING -->
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
+</resources>
