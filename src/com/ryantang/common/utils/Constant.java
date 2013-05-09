@@ -1,6 +1,6 @@
 package com.ryantang.common.utils;
 
-public interface Commons {
+public interface Constant {
 
 	public static final int INTERNET_FAILED = -1;
 	public static final int FAILED = 0;

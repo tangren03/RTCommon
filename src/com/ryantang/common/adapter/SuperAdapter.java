@@ -6,25 +6,26 @@ import java.util.List;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
 /**
  * 
  * @author Ryan
  * @param <T>
  */
 public abstract class SuperAdapter<T> extends BaseAdapter {
-	
+
 	private final List<T> mList = new LinkedList<T>();
-	
-	public void setList(List<T> list){
+
+	public void setList(List<T> list) {
 		if (list != null) {
 			mList.addAll(list);
 		}
 	}
-	
-	public List<T> getList(){
+
+	public List<T> getList() {
 		return mList;
 	}
-	
+
 	public void appendToBottomList(List<T> list) {
 		if (list == null) {
 			return;
@@ -45,7 +46,7 @@ public abstract class SuperAdapter<T> extends BaseAdapter {
 		mList.clear();
 		notifyDataSetChanged();
 	}
-	
+
 	@Override
 	public int getCount() {
 		return mList.size();
@@ -53,7 +54,7 @@ public abstract class SuperAdapter<T> extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		if(position > mList.size()-1){
+		if (position > mList.size() - 1) {
 			return null;
 		}
 		return mList.get(position);
@@ -68,14 +69,16 @@ public abstract class SuperAdapter<T> extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		return getExView(position, convertView, parent);
 	}
-	
+
 	/**
 	 * Custom view
+	 * 
 	 * @param position
 	 * @param convertView
 	 * @param parent
 	 * @return
 	 */
-	protected abstract View getExView(int position, View convertView, ViewGroup parent);
+	protected abstract View getExView(int position, View convertView,
+			ViewGroup parent);
 
 }

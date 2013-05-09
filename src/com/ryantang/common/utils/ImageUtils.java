@@ -315,7 +315,7 @@ public class ImageUtils {
 				File folder = new File(path);
 				File[] files = folder.listFiles();
 				for (int i = 0; i < files.length; i++) {
-					System.out.println("deletePicture：" + files[i].getName());
+//					System.out.println("deletePicture：" + files[i].getName());
 					if (files[i].getName().equals(fileName)) {
 						return files[i].delete();
 					}
@@ -392,7 +392,7 @@ public class ImageUtils {
 				File photoFile[] = folders.listFiles();
 				for (int i = 0; i < photoFile.length; i++) {
 					String fileName = photoFile[i].getName();
-					System.out.println("isPictureExistsInSDCard:"+fileName);
+//					System.out.println("isPictureExistsInSDCard:"+fileName);
 					if (fileName.equals(photoName)) {
 						flag = true;
 						break;

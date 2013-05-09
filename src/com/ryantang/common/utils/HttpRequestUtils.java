@@ -181,7 +181,7 @@ public class HttpRequestUtils {
 				URL url = new URL(path);
 				conn = (HttpURLConnection) url.openConnection();
 				conn.setConnectTimeout(CONNECT_TIMEOUT);
-
+				System.out.println("------:"+conn.getResponseCode());
 				if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 					throw new RuntimeException();
 				} else {

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -14,6 +15,12 @@ import android.view.inputmethod.InputMethodManager;
 
 public class SystemUtils {
 
+	/**
+	 * Get current time by format
+	 * @param format
+	 * @return
+	 */
+	@SuppressLint("SimpleDateFormat")
 	public static String getCurrentTime(String format) {
 		SimpleDateFormat dateformat1 = new SimpleDateFormat(format);
 		String time = dateformat1.format(new Date());
