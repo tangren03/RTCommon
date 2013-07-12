@@ -1,7 +1,9 @@
 package com.ryantang.common.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -25,6 +27,39 @@ public class SystemUtils {
 		SimpleDateFormat dateformat1 = new SimpleDateFormat(format);
 		String time = dateformat1.format(new Date());
 		return time;
+	}
+	
+	public String getDate() {
+		Calendar c = Calendar.getInstance();
+
+		String year = String.valueOf(c.get(Calendar.YEAR));
+		String month = String.valueOf(c.get(Calendar.MONTH));
+		String day = String.valueOf(c.get(Calendar.DAY_OF_MONTH) + 1);
+		String hour = String.valueOf(c.get(Calendar.HOUR_OF_DAY));
+		String mins = String.valueOf(c.get(Calendar.MINUTE));
+
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append(year + "-" + month + "-" + day + " " + hour + ":"
+				+ mins);
+
+		return sbBuffer.toString();
+	}
+	
+	/**
+	 * 返回当前日期之后或之前几天的日期
+	 * @param day
+	 * day为正整数则往后退，为负整数则往前推
+	 * @return
+	 */
+	public static String getDateAfter(int day) {
+		Date date = new Date();
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		calendar.add(calendar.DATE, day);
+		date = calendar.getTime();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = formatter.format(date);
+		return dateString;
 	}
 
 	/**
@@ -89,4 +124,6 @@ public class SystemUtils {
 	    }
 	    return false;
 	}
+	
+	
 }

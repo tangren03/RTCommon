@@ -27,7 +27,7 @@ public class HttpRequestUtils {
 	
 	private final static int CONNECT_TIMEOUT = 5000;
 	private final static int REPEATS = 3;
-	private final static int READ_TIMEOUT = 5000;
+	private final static int READ_TIMEOUT = 10000;
 
 	/**
 	 * Send data of XML format to the server

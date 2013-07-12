@@ -1,6 +1,6 @@
 package com.ryantang.common.adapter;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.view.View;
@@ -8,20 +8,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 /**
- * 
+ * Super Adapter
  * @author Ryan
  * @param <T>
  */
 public abstract class SuperAdapter<T> extends BaseAdapter {
 
-	private final List<T> mList = new LinkedList<T>();
+	private final List<T> mList = new ArrayList<T>();
 
 	public void setList(List<T> list) {
 		if (list != null) {
 			mList.addAll(list);
 		}
 	}
-
+	
+	public SuperAdapter(List<T> list){
+		mList.addAll(list);
+	}
+	
 	public List<T> getList() {
 		return mList;
 	}
@@ -67,7 +71,7 @@ public abstract class SuperAdapter<T> extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		return getExView(position, convertView, parent);
+		return getItemView(position, convertView, parent);
 	}
 
 	/**
@@ -78,7 +82,7 @@ public abstract class SuperAdapter<T> extends BaseAdapter {
 	 * @param parent
 	 * @return
 	 */
-	protected abstract View getExView(int position, View convertView,
+	protected abstract View getItemView(int position, View convertView,
 			ViewGroup parent);
 
 }

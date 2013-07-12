@@ -9,17 +9,17 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Bitmap.Config;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -307,29 +307,25 @@ public class ImageUtils {
 	/**
 	 * Delete picture
 	 * @param path
+	 * String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/dirName";
 	 * @param fileName
 	 */
 	public static boolean deletePicture(String path,String fileName){
 		if (checkSDCardAvailable()) {
-			if (isPictureExistsInSDCard(path, fileName)) {
-				File folder = new File(path);
-				File[] files = folder.listFiles();
-				for (int i = 0; i < files.length; i++) {
-//					System.out.println("deletePicture：" + files[i].getName());
-					if (files[i].getName().equals(fileName)) {
-						return files[i].delete();
-					}
-				}
-			}
-			
+			File file = new File(path + "/" + fileName);
+			if (file == null || !file.exists() || file.isDirectory())
+				return false;
+			return file.delete();
+		}else {
+			return false;
 		}
-		return false;
 	}
 	
 	/**
 	 * Save image to the SD card 
 	 * @param photoBitmap
 	 * @param photoName
+	 * String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/dirName";
 	 * @param path
 	 */
 	public static boolean savePictureToSDCard(Bitmap photoBitmap,String path,String photoName){
@@ -365,6 +361,7 @@ public class ImageUtils {
 	
 	/**
 	 * Get images from SD card by path and the name of image
+	 * String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/dirName";
 	 * @param photoName
 	 * @return
 	 */
@@ -381,6 +378,7 @@ public class ImageUtils {
 	 * Check if the picture exists in the SD card
 	 * @param path
 	 * @param photoName
+	 * String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/dirName";
 	 * @return
 	 */
 	public static boolean isPictureExistsInSDCard(String path,String photoName){
