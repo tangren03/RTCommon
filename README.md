@@ -7,7 +7,7 @@ RTCommon以Library工程的方式开发，封装了一系列工具方法，包�
 2. 右击你的项目并选择
 3. 在Library栏目点击Add并添加RTCommon 
 4. 完成上述步骤即可在你的工程中使用RTCommon中封装的工具类和第三方组件
-5. 使用方法参考RTCommonDemo
+5. 使用方法参考示例工程[RTCommonDemo](https://github.com/tangren03/RTCommonDemo)
 
 #### Structure
 以下是工程包结构，分别封装了自定义的Activity及Adapter，另外在db包下对db4o对象形数据库进行了封装，在pulllistview包下对下拉刷新控件进行了封装，utils包下封装各种类型的工具方法，slidingmenu包下是对滑动菜单SlidingMenu的封装。
