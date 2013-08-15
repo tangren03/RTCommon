@@ -1,5 +1,7 @@
 package com.ryantang.common.utils;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -210,6 +212,63 @@ public class HttpRequestUtils {
 		}
 
 		return resultStream;
+	}
+	
+	public static boolean downloadFile(String urlPath,String filePath,String fileName){
+		boolean flag = false;
+		int downloadedSize = 0, totalsize;
+		float per;
+        try {
+            URL url = new URL(urlPath);
+            HttpURLConnection urlConnection = (HttpURLConnection) url
+                    .openConnection();
+ 
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setDoOutput(true);
+ 
+            // connect
+            urlConnection.connect();
+ 
+            // create a new file, to save the downloaded file
+            File fileDir = new File(filePath);
+            if (!fileDir.exists()) {
+				fileDir.mkdirs();
+			}
+            File file = new File(filePath, fileName);
+ 
+            FileOutputStream fileOutput = new FileOutputStream(file);
+ 
+            // Stream used for reading the data from the internet
+            InputStream inputStream = urlConnection.getInputStream();
+ 
+            // this is the total size of the file which we are
+            // downloading
+            totalsize = urlConnection.getContentLength();
+//            setText("Starting PDF download...");
+ 
+            // create a buffer...
+            byte[] buffer = new byte[1024 * 1024];  
+            int bufferLength = 0;
+ 
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+                downloadedSize += bufferLength;
+                per = ((float) downloadedSize / totalsize) * 100;
+                System.out.println("Total PDF File size  : "
+                        + (totalsize / 1024)
+                        + " KB\n\nDownloading PDF " + (int) per
+                        + "% complete");
+            }
+            // close the output stream when complete //
+            fileOutput.close();
+//            setText("Download Complete. Open PDF Application installed in the device.");
+            flag = true;
+ 
+        } catch (final Exception e) {
+        	e.printStackTrace();
+        	flag = false;
+        }
+		return flag;
 	}
 
 }

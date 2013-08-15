@@ -21,6 +21,23 @@ public class SDCardUtils {
 		return android.os.Environment.getExternalStorageState().equals(
 				android.os.Environment.MEDIA_MOUNTED);
 	}
+	
+	/**
+	 * Check if the file is exists
+	 * @param filePath
+	 * @param fileName
+	 * @return
+	 */
+	public static boolean isFileExistsInSDCard(String filePath, String fileName){
+		boolean flag = false;
+		if (checkSDCardAvailable()) {
+			File file = new File(filePath, fileName);
+			if (file.exists()) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
 
 	/**
 	 * Write file to SD card

@@ -6,16 +6,19 @@ import android.os.Bundle;
 import android.view.Window;
 
 /**
- * 所有Activity需集成本类
+ * Every Activity should extents this class
  * 
- * @author Ryan
- * 
+ * @Author Ryan
+ * @Create 2013-8-15 上午9:33:22
  */
-public class BaseActivity extends Activity {
+public class RTActivity extends Activity {
+	
+	public RTActivityManager MyActivityManager = RTActivityManager.getActivityManager();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// Invisible the title bar
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	}
 
@@ -31,10 +34,21 @@ public class BaseActivity extends Activity {
 
 	}
 
+	/**
+	 * Open new activity
+	 * 
+	 * @param pClass
+	 */
 	protected void openActivity(Class<?> pClass) {
 		openActivity(pClass, null);
 	}
 
+	/**
+	 * Open new activity and bring some params
+	 * 
+	 * @param pClass
+	 * @param bundle
+	 */
 	protected void openActivity(Class<?> pClass, Bundle bundle) {
 		Intent intent = new Intent(this, pClass);
 		if (bundle != null) {
@@ -43,10 +57,21 @@ public class BaseActivity extends Activity {
 		startActivity(intent);
 	}
 
+	/**
+	 * Open new activity by action string
+	 * 
+	 * @param action
+	 */
 	protected void openActivity(String action) {
 		openActivity(action, null);
 	}
 
+	/**
+	 * Open new activity by action string and bring some params
+	 * 
+	 * @param action
+	 * @param pBundle
+	 */
 	protected void openActivity(String action, Bundle pBundle) {
 		Intent intent = new Intent(action);
 		if (pBundle != null) {
@@ -55,7 +80,10 @@ public class BaseActivity extends Activity {
 		startActivity(intent);
 	}
 
-	protected void finishActivity() {
+	/**
+	 * Close current activity
+	 */
+	protected void closeActivity() {
 		super.finish();
 	}
 }

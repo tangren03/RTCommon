@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Base DAO
  * @author Ryan
  */
-public abstract class BaseDAO {
+public abstract class RTBaseDAO {
 
 	/**
 	 * insert data into database

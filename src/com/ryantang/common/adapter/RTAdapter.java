@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
  * @author Ryan
  * @param <T>
  */
-public abstract class SuperAdapter<T> extends BaseAdapter {
+public abstract class RTAdapter<T> extends BaseAdapter {
 
 	private final List<T> mList = new ArrayList<T>();
 
@@ -22,7 +22,7 @@ public abstract class SuperAdapter<T> extends BaseAdapter {
 		}
 	}
 	
-	public SuperAdapter(List<T> list){
+	public RTAdapter(List<T> list){
 		mList.addAll(list);
 	}
 	

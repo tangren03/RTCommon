@@ -19,6 +19,7 @@ public class SystemUtils {
 
 	/**
 	 * Get current time by format
+	 * 
 	 * @param format
 	 * @return
 	 */
@@ -28,7 +29,12 @@ public class SystemUtils {
 		String time = dateformat1.format(new Date());
 		return time;
 	}
-	
+
+	/**
+	 * Get current date 2013-08-15
+	 * 
+	 * @return
+	 */
 	public String getDate() {
 		Calendar c = Calendar.getInstance();
 
@@ -44,11 +50,12 @@ public class SystemUtils {
 
 		return sbBuffer.toString();
 	}
-	
+
 	/**
 	 * 返回当前日期之后或之前几天的日期
+	 * 
 	 * @param day
-	 * day为正整数则往后退，为负整数则往前推
+	 *            day为正整数则往后推，为负整数则往前推
 	 * @return
 	 */
 	public static String getDateAfter(int day) {
@@ -63,7 +70,7 @@ public class SystemUtils {
 	}
 
 	/**
-	 * Check the network
+	 * Check network state
 	 * 
 	 * @param context
 	 * @return
@@ -78,15 +85,18 @@ public class SystemUtils {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Judge if wifi or internect is connected
+	 * 
 	 * @param context
 	 * @return
 	 */
-	public static boolean isWifiConnect(Context context){
-		ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Activity.CONNECTIVITY_SERVICE);
-		boolean wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
+	public static boolean isWifiConnect(Context context) {
+		ConnectivityManager connectivityManager = (ConnectivityManager) context
+				.getSystemService(Activity.CONNECTIVITY_SERVICE);
+		boolean wifi = connectivityManager.getNetworkInfo(
+				ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
 		if (wifi) {
 			return true;
 		}
@@ -107,23 +117,24 @@ public class SystemUtils {
 					InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 	}
-	
+
 	/**
 	 * Check service state
+	 * 
 	 * @param context
 	 * @param className
 	 * @return
 	 */
-	public static boolean isServiceRunning(Context context,String className){
-	     ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
-	     List<RunningServiceInfo> list = am.getRunningServices(30);
-	     for(RunningServiceInfo info : list){
-	         if(info.service.getClassName().equals(className)){
-	        	 return true;
-	         }
-	    }
-	    return false;
+	public static boolean isServiceRunning(Context context, String className) {
+		ActivityManager am = (ActivityManager) context
+				.getSystemService(Context.ACTIVITY_SERVICE);
+		List<RunningServiceInfo> list = am.getRunningServices(30);
+		for (RunningServiceInfo info : list) {
+			if (info.service.getClassName().equals(className)) {
+				return true;
+			}
+		}
+		return false;
 	}
-	
-	
+
 }
