@@ -6,7 +6,7 @@ import android.widget.Toast;
  * Toast utilities
  * @author Ryan
  */
-public class ToastUtils {
+public final class ToastUtils {
 
 	/**
 	 * Show toast by string message

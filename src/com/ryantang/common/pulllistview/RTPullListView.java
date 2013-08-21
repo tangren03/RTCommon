@@ -74,6 +74,7 @@ public class RTPullListView extends ListView implements OnScrollListener {
 		init(context);
 	}
 	
+	
 	private void init(Context context) {
 		inflater = LayoutInflater.from(context);
 		headView = (LinearLayout) inflater.inflate(R.layout.pulllist_head, null);
