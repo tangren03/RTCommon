@@ -16,9 +16,18 @@ public abstract class RTAdapter<T> extends BaseAdapter {
 
 	private final List<T> mList = new ArrayList<T>();
 
+	@Deprecated
 	public void setList(List<T> list) {
 		if (list != null) {
 			mList.addAll(list);
+		}
+	}
+	
+	public void resetList(List<T> list) {
+		if (list != null && mList.size() > 0) {
+			mList.clear();
+			mList.addAll(list);
+			notifyDataSetChanged();
 		}
 	}
 	

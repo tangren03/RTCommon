@@ -51,6 +51,10 @@ public class SDCardUtils {
 			throws Exception {
 		boolean flag = false;
 		if (checkSDCardAvailable()) {
+			File dir = new File(filePath);
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
 			File file = new File(filePath, filename);
 			FileOutputStream outStream = new FileOutputStream(file);
 			outStream.write(content.getBytes());
