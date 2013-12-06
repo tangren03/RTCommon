@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
  * Operation about SD card
  * 
  * @Author Ryan
- * @Create 2013-6-17 上午11:05:05
+ * @Create 2013-6-17 
  */
 public class SDCardUtils {
 

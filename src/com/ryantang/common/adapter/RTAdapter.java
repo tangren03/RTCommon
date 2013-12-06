@@ -8,37 +8,55 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 /**
- * Super Adapter
- * @author Ryan
+ * Extents from BaseAdapter RTAdapter.java
+ * 
+ * @author Ryan Create at 2013-12-6 下午1:37:31
  * @param <T>
  */
 public abstract class RTAdapter<T> extends BaseAdapter {
 
-	private final List<T> mList = new ArrayList<T>();
+	private List<T> mList = new ArrayList<T>();
 
-	@Deprecated
-	public void setList(List<T> list) {
+	/**
+	 * Set data list to Adapter
+	 * 
+	 * @param list
+	 */
+	protected void setList(List<T> list) {
 		if (list != null) {
 			mList.addAll(list);
+		} else {
+			throw new NullPointerException();
 		}
 	}
-	
-	public void resetList(List<T> list) {
+
+	/**
+	 * Clear data list and reset it, update ListView
+	 * 
+	 * @param list
+	 */
+	public void notifyDateSetUpdate(List<T> list) {
 		if (list != null && mList.size() > 0) {
 			mList.clear();
 			mList.addAll(list);
 			notifyDataSetChanged();
 		}
 	}
-	
-	public RTAdapter(List<T> list){
-		mList.addAll(list);
-	}
-	
+
+	/**
+	 * Get data list
+	 * 
+	 * @return
+	 */
 	public List<T> getList() {
 		return mList;
 	}
 
+	/**
+	 * Append data list to bottom of the ListView
+	 * 
+	 * @param list
+	 */
 	public void appendToBottomList(List<T> list) {
 		if (list == null) {
 			return;
@@ -47,6 +65,11 @@ public abstract class RTAdapter<T> extends BaseAdapter {
 		notifyDataSetChanged();
 	}
 
+	/**
+	 * Append data list to top of the ListView
+	 * 
+	 * @param list
+	 */
 	public void appendToTopList(List<T> list) {
 		if (list == null) {
 			return;
@@ -55,11 +78,15 @@ public abstract class RTAdapter<T> extends BaseAdapter {
 		notifyDataSetChanged();
 	}
 
+	/**
+	 * Clear all the data and update ListView
+	 */
 	public void clear() {
 		mList.clear();
 		notifyDataSetChanged();
 	}
 
+	/* BaseAdapter methods */
 	@Override
 	public int getCount() {
 		return mList.size();
@@ -84,7 +111,7 @@ public abstract class RTAdapter<T> extends BaseAdapter {
 	}
 
 	/**
-	 * Custom view
+	 * Custom item view in your subclass
 	 * 
 	 * @param position
 	 * @param convertView

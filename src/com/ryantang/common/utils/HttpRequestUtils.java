@@ -22,13 +22,18 @@ import org.apache.http.message.BasicNameValuePair;
 
 /**
  * HTTP Helper （POST）
- * 
  * @author Ryan
  */
 public class HttpRequestUtils {
 	
 	private final static int CONNECT_TIMEOUT = 5000;
+	/**
+	 * Repeat counts when request was failed
+	 */
 	private final static int REPEATS = 3;
+	/**
+	 * Time of read failed
+	 */
 	private final static int READ_TIMEOUT = 10000;
 
 	/**
@@ -229,7 +234,7 @@ public class HttpRequestUtils {
             // connect
             urlConnection.connect();
  
-            // create a new file, to save the downloaded file
+            // create a new file, to save the file
             File fileDir = new File(filePath);
             if (!fileDir.exists()) {
 				fileDir.mkdirs();

@@ -52,10 +52,8 @@ public class SystemUtils {
 	}
 
 	/**
-	 * 返回当前日期之后或之前几天的日期
 	 * 
 	 * @param day
-	 *            day为正整数则往后推，为负整数则往前推
 	 * @return
 	 */
 	public static String getDateAfter(int day) {

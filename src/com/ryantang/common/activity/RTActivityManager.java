@@ -7,13 +7,14 @@ import android.app.ActivityManager;
 import android.content.Context;
 
 /**
- * Activity Manager (Stack)
+ * Activity Manager Use stack to manage Activity
  * 
  * @Author Ryan
- * @Create 2013-7-15 下午3:25:18
+ * @Create 2013-7-15
  */
 public class RTActivityManager {
 
+	// Stack for activity
 	private static Stack<Activity> activityStack;
 	// Single Instance
 	private static RTActivityManager instance;
@@ -29,7 +30,7 @@ public class RTActivityManager {
 	}
 
 	/**
-	 * Push activity to the stack
+	 * Push Activity to the stack
 	 * 
 	 * @param activity
 	 */
@@ -41,7 +42,7 @@ public class RTActivityManager {
 	}
 
 	/**
-	 * Get current activity on the top of the stack
+	 * Get current Activity on the top of the stack
 	 * 
 	 * @return
 	 */
@@ -51,15 +52,15 @@ public class RTActivityManager {
 	}
 
 	/**
-	 * Finish current activity
+	 * Finish current Activity
 	 */
-	public void finishCurrentActivity() {
+	public void finishLastActivity() {
 		Activity currentActivity = activityStack.lastElement();
 		finishActivity(currentActivity);
 	}
 
 	/**
-	 * Finish activity
+	 * Finish Activity
 	 * 
 	 * @param activity
 	 */
@@ -72,7 +73,7 @@ public class RTActivityManager {
 	}
 
 	/**
-	 * Finish activity by class name
+	 * Finish Activity by class name
 	 * 
 	 * @param activity
 	 */
@@ -99,7 +100,7 @@ public class RTActivityManager {
 	}
 
 	/**
-	 * Exit the application
+	 * Exit the Application
 	 * 
 	 * @param context
 	 */
@@ -113,11 +114,23 @@ public class RTActivityManager {
 		} catch (Exception e) {
 		}
 	}
-	
-	public int getActivityCount(){
+
+	/**
+	 * Get activity count in the stack
+	 * 
+	 * @return
+	 */
+	public static int getActivityCount() {
 		if (activityStack != null) {
 			return activityStack.size();
 		}
 		return 0;
+	}
+	
+	/**
+	 * Print the count in Activity stack
+	 */
+	public static void printActivityCount(){
+		System.out.println("Activity count:"+getActivityCount());
 	}
 }

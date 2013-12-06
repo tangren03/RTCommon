@@ -9,11 +9,9 @@ import android.view.Window;
  * Every Activity should extents this class
  * 
  * @Author Ryan
- * @Create 2013-8-15 上午9:33:22
+ * @Create 2013-8-15
  */
 public class RTActivity extends Activity {
-	
-	public RTActivityManager MyActivityManager = RTActivityManager.getActivityManager();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,20 +20,8 @@ public class RTActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-	}
-
 	/**
-	 * Open new activity
+	 * Open a new Activity by class name
 	 * 
 	 * @param pClass
 	 */
@@ -44,7 +30,7 @@ public class RTActivity extends Activity {
 	}
 
 	/**
-	 * Open new activity and bring some params
+	 * Open a new Activity and bring some parameters by bundle
 	 * 
 	 * @param pClass
 	 * @param bundle
@@ -58,7 +44,7 @@ public class RTActivity extends Activity {
 	}
 
 	/**
-	 * Open new activity by action string
+	 * Open a new Activity by action string
 	 * 
 	 * @param action
 	 */
@@ -67,7 +53,7 @@ public class RTActivity extends Activity {
 	}
 
 	/**
-	 * Open new activity by action string and bring some params
+	 * Open a new Activity by action string and bring some parameters
 	 * 
 	 * @param action
 	 * @param pBundle
@@ -80,10 +66,4 @@ public class RTActivity extends Activity {
 		startActivity(intent);
 	}
 
-	/**
-	 * Close current activity
-	 */
-	protected void closeActivity() {
-		super.finish();
-	}
 }
