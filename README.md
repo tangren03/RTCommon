@@ -11,6 +11,7 @@ RTCommon is an Android develop libs, encapsulate some common methods, including 
 4. 完成上述步骤即可在你的工程中使用RTCommon中封装的工具类和第三方组件
 5. 使用方法参考示例工程[RTCommonDemo](https://github.com/tangren03/RTCommonDemo)
 
+---
 1. Fork and clone RTCommon to your local
 2. Right click your project and select Properties-Android
 3. Click Add button to choose RTCommon in Library section, or you can import to lib.
