@@ -22,15 +22,9 @@ RTCommon is an Android develop libs, encapsulate some common methods, including 
 以下是工程包结构，分别封装了自定义的Activity及Adapter，另外在db包下对db4o对象形数据库进行了封装，在pulllistview包下对下拉刷新控件进行了封装，utils包下封装各种类型的工具方法，slidingmenu包下是对滑动菜单SlidingMenu的封装。
 
 ---
-This is the structure of RTCommon
+##### This is the structure of RTCommon
 
-> - -com.ryantang.common.activity
-- -com.ryantang.common.adapter
-- -com.ryantang.common.db
-- -com.ryantang.common.pulllistview
-- -com.ryantang.common.utils
-- -com.slidingmenu.lib
-- -com.slidingmenu.lib.app
+![structure](https://github.com/tangren03/RTCommon/raw/master/raw/1.png)
 
 #### Notice
 - RTCommon工程编码格式为UTF-8
